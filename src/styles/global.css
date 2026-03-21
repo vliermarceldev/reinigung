@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans:
+    "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --- Basis-Setup --- */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  /* font-weight und style (italic) steuern wir direkt über die Tailwind-Klassen im HTML */
+}
+
+p,
+span,
+a,
+li,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-sans);
+}
+
+/* --- Elegante Scrollbar für die gesamte Seite --- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa; /* Entspricht bg-zinc-50 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8; /* Entspricht bg-zinc-300 */
+  border-radius: 6px;
+  border: 3px solid #fafafa; /* Schafft einen künstlichen Abstand zum Rand */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #18181b; /* Entspricht bg-zinc-900 */
+}
+
+/* Für Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 #fafafa;
+}
+
+/* --- Text-Markierung (Highlighting) --- */
+::selection {
+  background-color: #18181b; /* zinc-900 */
+  color: #fafafa; /* zinc-50 */
+}
+
+::-moz-selection {
+  background-color: #18181b;
+  color: #fafafa;
+}
+
+/* --- Scroll Reveal Animationen --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optionale Verzögerungen, falls Elemente nacheinander einfliegen sollen */
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* Läuft bis zur Hälfte (weil wir die Logos verdoppeln) */
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content; /* Wichtig, damit der Container nicht staucht */
+  animation: marquee 30s linear infinite; /* 30s für eine langsame, edle Bewegung */
+}
+
+/* Pause beim Hovern (optional, wirkt edel) */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

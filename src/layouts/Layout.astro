@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const siteUrl = "https://deine-domain.de";
+const heroImageUrl = "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?q=80&w=2070&auto=format&fit=crop";
+---
+
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href={siteUrl} />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" as="image" href={heroImageUrl} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={siteUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={heroImageUrl} />
+
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Spezialreinigung Ruhrgebiet",
+      "image": "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?q=80&w=2070&auto=format&fit=crop",
+      "description": "Spezialreinigung in Witten und dem gesamten Ruhrgebiet: Bauendreinigung, Grundreinigung und Reinigung bei extremer Verschmutzung.",
+      "url": "https://deine-domain.de",
+      "telephone": "+49000000000",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Witten",
+        "addressRegion": "Nordrhein-Westfalen",
+        "addressCountry": "DE"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Ruhrgebiet"
+      }
+    }
+  </script>
+
+  <style is:global>
+    .motion-hero, .motion-scroll {
+      opacity: 0;
+      transform: translateY(3rem);
+      transition-property: opacity, transform;
+      transition-duration: 1000ms;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .motion-hero.is-visible, .motion-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+  </style>
+</head>
+
+<body class="bg-[#09090b] text-zinc-100 selection:bg-zinc-100 selection:text-[#09090b] overflow-x-hidden antialiased">
+  
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+    Zum Hauptinhalt springen
+  </a>
+
+  <slot />
+
+  <script is:inline>
+    const runAnimations = () => {
+      setTimeout(() => {
+        document.querySelectorAll('.motion-hero').forEach(el => el.classList.add('is-visible'));
+        const img = document.getElementById('hero-img');
+        if (img) img.classList.replace('scale-110', 'scale-100');
+      }, 50);
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+
+      document.querySelectorAll('.motion-scroll').forEach(el => observer.observe(el));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runAnimations);
+    } else {
+      runAnimations();
+    }
+  </script>
+</body>
+</html>
