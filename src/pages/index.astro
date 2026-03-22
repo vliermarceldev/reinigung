@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import Services from '../components/Services.astro';
-import Trust from '../components/Trust.astro'; // NEU
+import Trust from '../components/Trust.astro';
 import Process from '../components/Process.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
@@ -14,11 +14,12 @@ const metaDesc = "Spezialreinigung im Ruhrgebiet: Bauendreinigung, Grundreinigun
 
 <Layout title={metaTitle} description={metaDesc}>
   <Hero />
-  <main id="main-content">
-    <Marquee />
-    <Services />
-    <Trust /> <Process />
-    <FAQ />
-  </main>
+
+  <Marquee />
+  <Services />
+  <Trust />
+  <Process />
+  <FAQ />
+
   <Footer />
 </Layout>

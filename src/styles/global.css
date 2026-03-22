@@ -9,13 +9,14 @@
   --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* --- Basis-Setup --- */
+/* --- Enterprise Basis-Setup --- */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 1. Monumentale Überschriften (Eng, massiv, ausbalanciert) */
 h1,
 h2,
 h3,
@@ -23,18 +24,42 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  /* font-weight und style (italic) steuern wir direkt über die Tailwind-Klassen im HTML */
+  font-weight: 800; /* Standardmäßig massiv (Extrabold) */
+  letter-spacing: -0.04em; /* Sehr enger Buchstabenabstand */
+  line-height: 1.1; /* Sehr enger Zeilenabstand */
+  text-wrap: balance; /* Verhindert optisch unschöne, einzelne Wörter in der letzten Zeile */
 }
 
+/* H1 bekommt einen noch extremeren Kontrast */
+h1 {
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+/* 2. Entspannter Body-Text als harter Kontrast zu den Überschriften */
 p,
+li {
+  font-family: var(--font-sans);
+  line-height: 1.8; /* Sehr weiträumiger Zeilenabstand (entspannt das Auge) */
+  text-wrap: pretty; /* Vermeidet unschöne Umbrüche und harten Flattersatz */
+}
+
 span,
 a,
-li,
 button,
 input,
 textarea,
 select {
   font-family: var(--font-sans);
+}
+
+/* 3. Globale Eyebrow-Klasse für diese kleinen, weit gesperrten Labels */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem; /* ca. 11px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em; /* Extrem weit gesperrt als Kontrast zu den Überschriften */
 }
 
 /* --- Elegante Scrollbar für die gesamte Seite --- */

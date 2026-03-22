@@ -1,33 +1,41 @@
 ---
-const heroImageUrl = "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?q=80&w=2070&auto=format&fit=crop";
+const heroImageUrl = "../herobg.jpg";
 ---
 <header class="relative min-h-[100dvh] w-full flex flex-col-reverse lg:flex-row bg-[#09090b]">
   <div class="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-16 lg:p-24 z-10 border-r border-zinc-900">
     <div class="w-full max-w-xl">
-      <span class="motion-hero inline-block px-4 py-1.5 mb-8 border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs tracking-widest uppercase rounded-sm font-semibold">
+      <span class="eyebrow motion-hero inline-block px-4 py-1.5 mb-4 border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs tracking-widest uppercase rounded-sm font-semibold">
         Ruhrgebiet
       </span>
       <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
-        <span class="motion-hero block delay-100">Spezialreinigung</span>
-        <span class="motion-hero block text-zinc-400 delay-200">für Objekte mit</span>
-        <span class="motion-hero block text-zinc-500 delay-300">erhöhtem Anspruch.</span>
+        <span class="motion-hero block delay-100">
+          <span class="bg-gradient-to-r from-sky-300 to-sky-600 bg-clip-text text-transparent pb-1">
+            Spezialreinigung
+          </span>
+        </span>
+        <span class="motion-hero block text-white delay-200">für Objekte mit</span>
+        <span class="motion-hero block text-white delay-300">erhöhtem Anspruch.</span>
       </h1>
+      
       <p class="motion-hero delay-400 text-lg md:text-xl text-zinc-400 mb-12 leading-relaxed">
         Bauendreinigung, Grundreinigung und Sonderreinigung für Wohn- und Gewerbeobjekte. Präzise geplant, sauber ausgeführt und mit direkter Kommunikation vom Erstkontakt bis zur Abnahme.
       </p>
       <div class="motion-hero delay-500 flex flex-col sm:flex-row items-center gap-4">
-        <a href="https://wa.me/DEINENUMMER" target="_blank" rel="noopener noreferrer" aria-label="Anfrage per WhatsApp senden" class="group w-full sm:w-auto px-8 py-4 bg-zinc-100 hover:bg-white text-zinc-900 font-bold rounded-sm transition-colors shadow-md flex items-center justify-center gap-3 text-sm tracking-wide uppercase">
-          <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-500" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.573-.187-.981-.342-2.303-.876-3.771-3.234-3.889-3.392-.118-.153-.929-1.236-.929-2.36 0-1.122.584-1.674.792-1.9.208-.223.454-.279.605-.279.15 0 .3.003.435.008.145.006.335-.056.525.405.198.481.676 1.646.736 1.766.06.118.1.258.026.405-.075.148-.113.239-.224.368-.112.128-.236.279-.335.385-.109.117-.223.245-.098.461.124.215.553.915 1.185 1.482.818.736 1.503.963 1.711 1.07.208.107.33.09.453-.052.123-.141.531-.62.673-.833.142-.212.284-.176.48-.104.195.071 1.236.582 1.446.687.21.106.35.158.4.246.05.088.05.513-.094.918z"/></svg>
-          Anfrage per WhatsApp
+        <a href="https://wa.me/4917620013611?text=Hallo,%20ich%20habe%20eine%20Anfrage%20zur%20Spezialreinigung." target="_blank" rel="noopener noreferrer" aria-label="Anfrage per WhatsApp senden" class="group w-full sm:w-auto px-8 py-4 bg-transparent border border-emerald-500/50 hover:bg-emerald-500 hover:border-emerald-500 font-bold rounded-md transition-all duration-300 flex items-center justify-center gap-3 text-sm tracking-wide uppercase shadow-[0_0_15px_rgba(16,185,129,0.05)] hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+          <svg class="w-5 h-5 text-emerald-400 group-hover:text-white group-hover:scale-110 transition-all duration-500" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.573-.187-.981-.342-2.303-.876-3.771-3.234-3.889-3.392-.118-.153-.929-1.236-.929-2.36 0-1.122.584-1.674.792-1.9.208-.223.454-.279.605-.279.15 0 .3.003.435.008.145.006.335-.056.525.405.198.481.676 1.646.736 1.766.06.118.1.258.026.405-.075.148-.113.239-.224.368-.112.128-.236.279-.335.385-.109.117-.223.245-.098.461.124.215.553.915 1.185 1.482.818.736 1.503.963 1.711 1.07.208.107.33.09.453-.052.123-.141.531-.62.673-.833.142-.212.284-.176.48-.104.195.071 1.236.582 1.446.687.21.106.35.158.4.246.05.088.05.513-.094.918z"/></svg>
+          <span class="bg-gradient-to-r from-emerald-300 to-emerald-600 bg-clip-text text-transparent group-hover:text-white transition-colors duration-300 pb-[1px]">
+            Per WhatsApp
+          </span>
         </a>
-        <a href="#kontakt" class="w-full sm:w-auto px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-sm transition-colors border border-zinc-800 text-sm tracking-wide uppercase text-center">
-          Projekt anfragen
+        <a href="mailto:kontakt@lier-objektaufbereitung.de?subject=Anfrage%20Reinigungsprojekt" class="group w-full sm:w-auto px-8 py-4 bg-transparent border border-zinc-700 text-zinc-300 hover:bg-white hover:text-zinc-900 hover:border-white font-bold rounded-md transition-all duration-300 flex items-center justify-center gap-3 text-sm tracking-wide uppercase">
+          <svg class="w-5 h-5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Per E-Mail
         </a>
       </div>
     </div>
   </div>
-  <div class="w-full lg:w-1/2 h-[50vh] lg:h-auto relative overflow-hidden bg-zinc-900">
-    <div id="hero-img" class="scale-110 transition-transform duration-[2500ms] ease-huge absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('${heroImageUrl}');`} role="img" aria-label="Profi bei der Spezialreinigung"></div>
+  <div class="w-full lg:w-1/2 h-[62vh] lg:h-auto relative overflow-hidden bg-zinc-900">
+    <div id="hero-img" class="absolute inset-0 bg-cover bg-start bg-no-repeat" style={`background-image: url('${heroImageUrl}');`} role="img" aria-label="Profi bei der Spezialreinigung"></div>
     <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-[#09090b]/80 lg:from-[#09090b]/40 via-transparent to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
   </div>
 </header>

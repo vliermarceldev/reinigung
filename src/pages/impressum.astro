@@ -7,31 +7,34 @@ const metaDesc = "Impressum und rechtliche Hinweise gemäß § 5 TMG.";
 ---
 
 <Layout title={metaTitle} description={metaDesc}>
-  
-  <header class="pt-24 pb-12 px-6 border-b border-zinc-900 bg-[#09090b]">
-    <div class="max-w-3xl mx-auto">
-      <a href="/" class="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest mb-6">
+  <header class="border-b border-zinc-900 bg-[#09090b] px-6 pb-12 pt-24">
+    <div class="mx-auto max-w-3xl">
+      <a
+        href="/"
+        class="mb-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-zinc-500 transition-colors hover:text-white"
+      >
         <span aria-hidden="true">&larr;</span> Zurück zur Startseite
       </a>
-      <h1 class="motion-hero text-4xl md:text-5xl font-extrabold tracking-tight text-white">Impressum.</h1>
+      <h1 class="motion-hero text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+        Impressum.
+      </h1>
     </div>
   </header>
 
-  <main id="main-content" class="py-16 px-6 bg-[#09090b] min-h-[50vh]">
-    <div class="max-w-3xl mx-auto prose prose-sm md:prose-base prose-zinc prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-500 hover:prose-a:text-green-400">
-      
+  <section class="min-h-[50vh] bg-[#09090b] px-6 py-16">
+    <div class="prose prose-sm md:prose-base prose-zinc prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-500 hover:prose-a:text-green-400 mx-auto max-w-3xl">
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
-        <strong>Dein Name</strong><br />
-        Spezialreinigung Ruhrgebiet<br />
-        Deine Straße 1<br />
-        58452 Witten
+        <strong>Marcel van Lier</strong><br />
+        Objektaufbereitung Ruhrgebiet<br />
+        Vor dem Falltor 11<br />
+        46459 Rees
       </p>
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: +49 (0) 123 44 55 66<br />
-        E-Mail: <a href="mailto:deine@email.de">deine@email.de</a>
+        Telefon: +49(0)17620013611<br />
+        E-Mail: <a href="mailto:kontakt@lier-objektaufbereitung.de">kontakt@lier-objektaufbereitung.de</a>
       </p>
 
       <h2>Umsatzsteuer-ID</h2>
@@ -42,11 +45,11 @@ const metaDesc = "Impressum und rechtliche Hinweise gemäß § 5 TMG.";
 
       <h2>Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
       <p>
-        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
       </p>
-
     </div>
-  </main>
+  </section>
 
   <Footer />
 </Layout>
