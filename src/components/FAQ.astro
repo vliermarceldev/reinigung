@@ -1,48 +1,32 @@
-<section id="faq" class="py-32 px-6 max-w-7xl mx-auto border-b border-zinc-900" aria-labelledby="faq-heading">
-  <div class="max-w-2xl mb-20">
+---
+import { globalFaqs } from '../data/globalFaqs.ts';
+import { getFaqSchema } from '../utils/seo.ts';
+
+const schemaOrgFaq = getFaqSchema(globalFaqs);
+---
+
+<section id="faq" class="py-16 lg:py-32 px-6 max-w-4xl mx-auto border-b border-zinc-900" aria-labelledby="faq-heading">
+  
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaOrgFaq)} />
+
+  <div class="mb-12 lg:mb-16">
     <h2 id="faq-heading" class="motion-scroll text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Häufige Fragen.</h2>
     <p class="motion-scroll delay-100 text-zinc-400 text-lg leading-relaxed">Klare Informationen für eine planbare und reibungslose Zusammenarbeit.</p>
   </div>
-  <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-    <div class="motion-scroll">
-      <dt class="text-xl font-bold text-white mb-3">1. Was kostet eine Spezialreinigung?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Die Kosten richten sich nach Objektart, Fläche, Verschmutzungsgrad, Zugänglichkeit und Leistungsumfang. Viele Anfragen lassen sich bereits auf Basis von Fotos oder Videos seriös einschätzen. Bei komplexeren Objekten erfolgt die Kalkulation nach Besichtigung oder auf Stundenbasis.</dd>
-    </div>
-    <div class="motion-scroll delay-100">
-      <dt class="text-xl font-bold text-white mb-3">2. Kann ich auch per Foto ein Angebot erhalten?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Ja. Für viele Projekte genügt eine kurze Beschreibung zusammen mit 3 bis 5 aussagekräftigen Fotos oder einem kurzen Video. So lässt sich der Aufwand schnell einordnen und ein passender Angebotsrahmen festlegen.</dd>
-    </div>
-    <div class="motion-scroll">
-      <dt class="text-xl font-bold text-white mb-3">3. Sind auch kurzfristige Termine möglich?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Kurzfristige Einsätze sind je nach Auslastung und Objektart möglich. Senden Sie idealerweise direkt Fotos, Standort und eine kurze Beschreibung, damit die Machbarkeit schnell geprüft werden kann.</dd>
-    </div>
-    <div class="motion-scroll delay-100">
-      <dt class="text-xl font-bold text-white mb-3">4. Welche Leistungen werden angeboten?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Zum Schwerpunkt gehören Bauendreinigung, Grund- und Intensivreinigung, Reinigung bei starker Verschmutzung sowie Sonder- und Detailreinigung, beispielsweise an Glas-, Rahmen- und Übergabeflächen.</dd>
-    </div>
-    <div class="motion-scroll">
-      <dt class="text-xl font-bold text-white mb-3">5. Für welche Objekte ist das Angebot geeignet?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Bearbeitet werden unter anderem Wohnungen, Häuser, Gewerbeflächen, Büros, Praxen, Übergabeobjekte sowie Einheiten von Hausverwaltungen, Maklern und kleineren gewerblichen Auftraggebern.</dd>
-    </div>
-    <div class="motion-scroll delay-100">
-      <dt class="text-xl font-bold text-white mb-3">6. Wie läuft eine Anfrage ab?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Nach Eingang Ihrer Anfrage werden Objektinformationen und Bildmaterial geprüft. Anschließend erhalten Sie eine Einschätzung, ein Angebot oder – wenn erforderlich – einen Termin zur Besichtigung. Nach Bestätigung wird die Ausführung verbindlich eingeplant.</dd>
-    </div>
-    <div class="motion-scroll">
-      <dt class="text-xl font-bold text-white mb-3">7. Gibt es einen Mindestauftragswert?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Ja. Der Mindestauftragswert liegt bei 150 €. So können Anfahrt, Vorbereitung, Ausführung und Dokumentation wirtschaftlich sauber abgebildet werden.</dd>
-    </div>
-    <div class="motion-scroll delay-100">
-      <dt class="text-xl font-bold text-white mb-3">8. In welchem Gebiet sind Einsätze möglich?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Der Schwerpunkt liegt im Ruhrgebiet und angrenzenden Regionen. Weitere Einsatzorte sind je nach Projektvolumen und Planung nach Absprache möglich.</dd>
-    </div>
-    <div class="motion-scroll">
-      <dt class="text-xl font-bold text-white mb-3">9. Wird pauschal oder nach Aufwand abgerechnet?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Beides ist möglich. Klar definierte Leistungen können pauschal angeboten werden. Bei schwer kalkulierbaren oder stark verschmutzten Objekten ist eine Abrechnung nach Aufwand häufig die transparenteste Lösung.</dd>
-    </div>
-    <div class="motion-scroll delay-100">
-      <dt class="text-xl font-bold text-white mb-3">10. Was unterscheidet Spezialreinigung von normaler Reinigung?</dt>
-      <dd class="text-zinc-400 leading-relaxed text-sm">Spezialreinigung wird dort eingesetzt, wo Standardreinigung nicht ausreicht. Dazu zählen höhere Verschmutzungsgrade, Baufeinstaub, haftende Rückstände, sensible Flächen und Objekte mit erhöhtem Anspruch an Ergebnis und Ausführung.</dd>
-    </div>
-  </dl>
+  
+  <div class="flex flex-col">
+    {globalFaqs.map((faq, index) => (
+      <details class={`motion-scroll group border-b border-zinc-800/60 py-5 ${index % 2 !== 0 ? 'delay-100' : ''}`}>
+        <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-white text-base lg:text-lg [&::-webkit-details-marker]:hidden">
+          <span class="pr-6">{index + 1}. {faq.q}</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500 shrink-0">
+            <svg fill="none" height="20" width="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+        </summary>
+        <p class="text-zinc-400 leading-relaxed text-sm mt-4 pr-12">
+          {faq.a}
+        </p>
+      </details>
+    ))}
+  </div>
 </section>

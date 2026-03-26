@@ -1,22 +1,117 @@
-<section class="py-32 px-6 max-w-7xl mx-auto border-t border-zinc-900" aria-labelledby="trust-heading">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+---
+import { Image } from 'astro:assets';
+import portraitImg from '../assets/Portrait1finish-website.webp';
+import { siteConfig } from '../data/siteConfig.ts';
+---
+
+<section class="py-16 lg:py-32 px-6 max-w-7xl mx-auto border-t border-zinc-900" aria-labelledby="trust-heading">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start lg:items-center">
     
-    <div class="order-2 lg:order-1 relative">
-      <div class="aspect-[4/5] w-full max-w-md mx-auto bg-zinc-900 overflow-hidden rounded-sm motion-scroll">
-        <img 
-          src="../Portrait1finish.jpg" 
-          alt="Experte für Spezialreinigung im Einsatz" 
-          class="w-full h-full object-cover hover:mix-blend-normal transition-all duration-700"
-          loading="lazy"
+    <div class="hidden lg:block relative motion-scroll">
+      <div class="group w-full max-w-md mx-auto aspect-[4/5] border border-white/10 rounded-xl overflow-hidden shadow-2xl relative bg-zinc-900 cursor-default">
+        
+        <Image 
+          src={portraitImg} 
+          alt={siteConfig.company.owner}
+          class="w-full h-full object-cover object-top transition-all duration-700 group-hover:grayscale group-hover:scale-110"
         />
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/15 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-0"></div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-8 pointer-events-none transition-opacity duration-500 group-hover:opacity-0">
+          <p class="text-emerald-400 text-xs tracking-widest uppercase font-bold mb-1">Ihr direkter Ansprechpartner</p>
+          <p class="text-white font-extrabold text-3xl tracking-tight">{siteConfig.company.owner}</p>
+        </div>
+
+        <div class="absolute inset-0 bg-[#09090b]/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex flex-col justify-center p-8">
+          <p class="text-emerald-400 text-xs tracking-widest uppercase font-bold mb-6">Kurzvita</p>
+          
+          <ul class="space-y-4 text-sm">
+            <li class="border-b border-white/10 pb-2">
+              <span class="block text-zinc-500 text-xs uppercase tracking-wider mb-1">Persönlich</span>
+              <span class="text-white font-medium">Jahrgang 2001</span>
+            </li>
+            <li class="border-b border-white/10 pb-2">
+              <span class="block text-zinc-500 text-xs uppercase tracking-wider mb-1">2022</span>
+              <span class="text-white font-medium block">Abitur</span>
+              <span class="text-zinc-400 text-xs">Berufskolleg Wesel</span>
+            </li>
+            <li class="border-b border-white/10 pb-2">
+              <span class="block text-zinc-500 text-xs uppercase tracking-wider mb-1">2022 &ndash; 2025</span>
+              <span class="text-white font-medium block">Studium der Mathematik</span>
+              <span class="text-zinc-400 text-xs">Fokus auf analytisches Denken, Struktur &amp; Detailgenauigkeit</span>
+            </li>
+            <li class="pt-1">
+              <span class="block text-zinc-500 text-xs uppercase tracking-wider mb-1">Heute</span>
+              <span class="text-white font-medium block">Inhabergeführtes Unternehmen</span>
+              <span class="text-zinc-400 text-xs">Übertragung mathematischer Präzision auf die Spezialreinigung</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
-    <div class="order-1 lg:order-2">
-      <h2 id="trust-heading" class="motion-scroll text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-8">
-        Inhabergeführt. <br/>
+    <div>
+      <h2 id="trust-heading" class="motion-scroll text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6 lg:mb-8">
+        Inhabergeführt.<br/>
         <span class="text-zinc-500">Verbindlich in Planung und Ausführung.</span>
       </h2>
+
+      <div class="block lg:hidden mb-10 motion-scroll delay-100 relative">
+        
+        <label class="block border border-white/10 rounded-xl overflow-hidden shadow-2xl relative bg-zinc-900 cursor-pointer select-none">
+          
+          <input type="checkbox" class="peer sr-only" aria-label="Lebenslauf einblenden" />
+
+          <div class="w-full aspect-[4/5] max-h-[420px]">
+            <Image 
+              src={portraitImg} 
+              alt={siteConfig.company.owner}
+              class="w-full h-full object-cover object-top transition-all duration-700 peer-checked:grayscale peer-checked:scale-105"
+            />
+          </div>
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/15 to-transparent transition-opacity duration-500 peer-checked:opacity-0 pointer-events-none"></div>
+          
+          <div class="absolute bottom-0 left-0 right-0 p-6 transition-opacity duration-500 peer-checked:opacity-0 pointer-events-none">
+            <p class="text-emerald-400 text-[10px] tracking-widest uppercase font-bold mb-1">Ihr direkter Ansprechpartner</p>
+            <p class="text-white font-extrabold text-2xl tracking-tight">{siteConfig.company.owner}</p>
+          </div>
+
+          <div class="absolute inset-0 bg-[#09090b]/85 backdrop-blur-sm opacity-0 peer-checked:opacity-100 transition-all duration-500 z-10 flex flex-col justify-center p-6">
+            <p class="text-emerald-400 text-[10px] tracking-widest uppercase font-bold mb-4">Kurzvita</p>
+            
+            <ul class="space-y-3 text-xs sm:text-sm">
+              <li class="border-b border-white/10 pb-2">
+                <span class="block text-zinc-500 text-[10px] sm:text-xs uppercase tracking-wider mb-0.5">Persönlich</span>
+                <span class="text-white font-medium">Jahrgang 2001</span>
+              </li>
+              <li class="border-b border-white/10 pb-2">
+                <span class="block text-zinc-500 text-[10px] sm:text-xs uppercase tracking-wider mb-0.5">2022</span>
+                <span class="text-white font-medium block">Abitur</span>
+                <span class="text-zinc-400 text-[10px] sm:text-xs">Berufskolleg Wesel</span>
+              </li>
+              <li class="border-b border-white/10 pb-2">
+                <span class="block text-zinc-500 text-[10px] sm:text-xs uppercase tracking-wider mb-0.5">2022 &ndash; 2025</span>
+                <span class="text-white font-medium block">Studium der Mathematik</span>
+                <span class="text-zinc-400 text-[10px] sm:text-xs">Fokus auf analytisches Denken &amp; Struktur</span>
+              </li>
+              <li class="pt-1">
+                <span class="block text-zinc-500 text-[10px] sm:text-xs uppercase tracking-wider mb-0.5">Heute</span>
+                <span class="text-white font-medium block">Inhabergeführtes Unternehmen</span>
+                <span class="text-zinc-400 text-[10px] sm:text-xs">Präzision in der Spezialreinigung</span>
+              </li>
+            </ul>
+          </div>
+        </label>
+        
+        <p class="text-center text-zinc-500 text-[10px] mt-2 uppercase tracking-widest flex items-center justify-center gap-1.5">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+          Für Lebenslauf antippen
+        </p>
+      </div>
+
       <p class="motion-scroll delay-100 text-zinc-400 text-lg leading-relaxed mb-10">
         Bei anspruchsvollen Reinigungsprojekten sind kurze Abstimmungswege, klare Verantwortung und ein sauberes Ergebnis entscheidend. Deshalb erfolgt die Kommunikation direkt mit mir: von der ersten Einschätzung über das Angebot bis zur Ausführung und finalen Abnahme.
       </p>
@@ -26,24 +121,24 @@
           <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-white font-bold">1</div>
           <div>
             <h4 class="text-white font-bold mb-1">Direkte Verantwortung</h4>
-            <p class="text-zinc-500 text-sm leading-relaxed">Ein Ansprechpartner, klare Zuständigkeit und keine wechselnden Kommunikationsebenen während des Projekts.</p>
+            <p class="text-zinc-500 text-sm leading-relaxed">Keine wechselnden Projektleiter oder Callcenter. Sie kommunizieren von der Erstbesichtigung bis zur finalen Abnahme direkt mit mir.</p>
           </div>
         </li>
         <li class="motion-scroll delay-300 flex items-start gap-4">
           <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-white font-bold">2</div>
           <div>
-            <h4 class="text-white font-bold mb-1">Geeignete Verfahren</h4>
-            <p class="text-zinc-500 text-sm leading-relaxed">Reinigungsmittel, Maschinen und Vorgehensweisen werden auf Objektart, Verschmutzung und Oberflächen abgestimmt.</p>
+            <h4 class="text-white font-bold mb-1 flex flex-wrap items-center gap-3">
+              Klares Einsatzgebiet
+              <span class="text-[10px] bg-white text-zinc-900 px-2 py-0.5 rounded-sm uppercase tracking-wider font-semibold border border-white mt-1 sm:mt-0">{siteConfig.company.region}</span>
+            </h4>
+            <p class="text-zinc-500 text-sm leading-relaxed">Unser logistischer Schwerpunkt liegt in einem Radius von ca. {siteConfig.company.radius} um unseren Standort. Das garantiert Pünktlichkeit und wirtschaftliche Anfahrtskosten.</p>
           </div>
         </li>
         <li class="motion-scroll delay-400 flex items-start gap-4">
-          <div class="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-white font-bold">3</div>
+          <div class="flex-shrink-0 w-8 h-8 rounded-full border border-emerald-500/50 bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold">3</div>
           <div>
-            <h4 class="text-white font-bold mb-1 flex items-center gap-3">
-              Verlässliche Einsatzplanung 
-              <span class="text-[10px] bg-white text-zinc-900 px-2 py-0.5 rounded-sm uppercase tracking-wider font-semibold border border-white">Optional auch kurzfristig</span>
-            </h4>
-            <p class="text-zinc-500 text-sm leading-relaxed">Zeitkritische Einsätze, Übergabetermine und eng getaktete Ausführungen können nach Verfügbarkeit priorisiert eingeplant werden.</p>
+            <h4 class="text-white font-bold mb-1">Garantierte Reaktionszeit</h4>
+            <p class="text-zinc-500 text-sm leading-relaxed">Zeit ist bei Bauprojekten oder Immobilienübergaben der kritische Faktor. Auf digitale Anfragen (WhatsApp/Mail mit Fotos) erhalten Sie <strong class="text-zinc-300">{siteConfig.cta.promiseText}</strong>.</p>
           </div>
         </li>
       </ul>

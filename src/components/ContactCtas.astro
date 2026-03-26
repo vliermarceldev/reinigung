@@ -1,0 +1,35 @@
+---
+import { siteConfig } from '../data/siteConfig.ts';
+
+interface Props {
+  city?: string;
+  variant?: 'hero' | 'footer';
+  class?: string;
+}
+
+const { city, variant = 'hero', class: className = "" } = Astro.props;
+
+const waText = city ? siteConfig.cta.getWaCityText(city) : siteConfig.cta.waDefaultText;
+const mailSubject = city ? siteConfig.cta.getMailCitySubject(city) : siteConfig.cta.mailDefaultSubject;
+
+const mailClasses = variant === 'hero' 
+  ? "group w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-zinc-900 font-bold rounded-md transition-all duration-300 flex items-center justify-center gap-3 text-sm tracking-wide uppercase"
+  : "group w-full sm:w-auto px-8 py-4 bg-transparent border border-zinc-700 text-zinc-300 hover:bg-white hover:text-zinc-900 hover:border-white font-bold rounded-md transition-all duration-300 flex items-center justify-center gap-3 text-sm tracking-wide uppercase";
+---
+
+<div class={`flex flex-col sm:flex-row items-center gap-4 ${className}`}>
+  <a href={siteConfig.getWhatsAppLink(waText)}
+  target="_blank" rel="noopener noreferrer" aria-label="Fotos per WhatsApp senden" 
+  class="group w-full sm:w-auto px-8 py-4 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 hover:bg-emerald-500 hover:border-emerald-500 font-bold rounded-md transition-all duration-300 flex items-center justify-center gap-3 text-sm tracking-wide uppercase shadow-[0_0_15px_rgba(16,185,129,0.05)] hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+    <svg class="w-5 h-5 text-emerald-400 group-hover:text-white group-hover:scale-110 transition-all duration-500" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.573-.187-.981-.342-2.303-.876-3.771-3.234-3.889-3.392-.118-.153-.929-1.236-.929-2.36 0-1.122.584-1.674.792-1.9.208-.223.454-.279.605-.279.15 0 .3.003.435.008.145.006.335-.056.525.405.198.481.676 1.646.736 1.766.06.118.1.258.026.405-.075.148-.113.239-.224.368-.112.128-.236.279-.335.385-.109.117-.223.245-.098.461.124.215.553.915 1.185 1.482.818.736 1.503.963 1.711 1.07.208.107.33.09.453-.052.123-.141.531-.62.673-.833.142-.212.284-.176.48-.104.195.071 1.236.582 1.446.687.21.106.35.158.4.246.05.088.05.513-.094.918z"/></svg>
+    <span class="text-emerald-300 group-hover:text-white transition-colors duration-300 pb-[1px]">
+      Fotos per WhatsApp
+    </span>
+  </a>
+  
+  <a href={siteConfig.getMailtoLink(mailSubject)} 
+  class={mailClasses}>
+    <svg class="w-5 h-5 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    Anfrage per E-Mail
+  </a>
+</div>

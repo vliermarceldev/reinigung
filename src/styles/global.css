@@ -16,7 +16,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 1. Monumentale Überschriften (Eng, massiv, ausbalanciert) */
+/* 1. Monumentale Überschriften */
 h1,
 h2,
 h3,
@@ -24,24 +24,23 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 800; /* Standardmäßig massiv (Extrabold) */
-  letter-spacing: -0.04em; /* Sehr enger Buchstabenabstand */
-  line-height: 1.1; /* Sehr enger Zeilenabstand */
-  text-wrap: balance; /* Verhindert optisch unschöne, einzelne Wörter in der letzten Zeile */
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 
-/* H1 bekommt einen noch extremeren Kontrast */
 h1 {
   letter-spacing: -0.05em;
   line-height: 1.05;
 }
 
-/* 2. Entspannter Body-Text als harter Kontrast zu den Überschriften */
+/* 2. Entspannter Body-Text */
 p,
 li {
   font-family: var(--font-sans);
-  line-height: 1.8; /* Sehr weiträumiger Zeilenabstand (entspannt das Auge) */
-  text-wrap: pretty; /* Vermeidet unschöne Umbrüche und harten Flattersatz */
+  line-height: 1.8;
+  text-wrap: pretty;
 }
 
 span,
@@ -53,36 +52,35 @@ select {
   font-family: var(--font-sans);
 }
 
-/* 3. Globale Eyebrow-Klasse für diese kleinen, weit gesperrten Labels */
+/* 3. Globale Eyebrow-Klasse */
 .eyebrow {
   display: inline-block;
-  font-size: 0.6875rem; /* ca. 11px */
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.25em; /* Extrem weit gesperrt als Kontrast zu den Überschriften */
+  letter-spacing: 0.25em;
 }
 
-/* --- Elegante Scrollbar für die gesamte Seite --- */
+/* --- Elegante Scrollbar --- */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fafafa; /* Entspricht bg-zinc-50 */
+  background: #fafafa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8; /* Entspricht bg-zinc-300 */
+  background: #d4d4d8;
   border-radius: 6px;
-  border: 3px solid #fafafa; /* Schafft einen künstlichen Abstand zum Rand */
+  border: 3px solid #fafafa;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #18181b; /* Entspricht bg-zinc-900 */
+  background: #18181b;
 }
 
-/* Für Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #d4d4d8 #fafafa;
@@ -90,8 +88,8 @@ select {
 
 /* --- Text-Markierung (Highlighting) --- */
 ::selection {
-  background-color: #18181b; /* zinc-900 */
-  color: #fafafa; /* zinc-50 */
+  background-color: #18181b;
+  color: #fafafa;
 }
 
 ::-moz-selection {
@@ -99,21 +97,48 @@ select {
   color: #fafafa;
 }
 
-/* --- Scroll Reveal Animationen --- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+/* --- Marquee Animation --- */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.reveal.active {
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* --- Konsolidierte Scroll & Hero Animationen --- */
+.motion-hero,
+.motion-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-hero.is-visible,
+.motion-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Optionale Verzögerungen, falls Elemente nacheinander einfliegen sollen */
+/* Zentrale Delay-Klassen */
 .delay-100 {
   transition-delay: 100ms;
+}
+.delay-150 {
+  transition-delay: 150ms;
 }
 .delay-200 {
   transition-delay: 200ms;
@@ -121,23 +146,23 @@ select {
 .delay-300 {
   transition-delay: 300ms;
 }
+.delay-400 {
+  transition-delay: 400ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+/* Barrierefreiheit: Animationen reduzieren */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  100% {
-    transform: translateX(-50%);
-  } /* Läuft bis zur Hälfte (weil wir die Logos verdoppeln) */
-}
 
-.animate-marquee {
-  display: flex;
-  width: max-content; /* Wichtig, damit der Container nicht staucht */
-  animation: marquee 30s linear infinite; /* 30s für eine langsame, edle Bewegung */
-}
-
-/* Pause beim Hovern (optional, wirkt edel) */
-.animate-marquee:hover {
-  animation-play-state: paused;
+  .motion-hero,
+  .motion-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

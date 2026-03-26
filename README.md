@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# Marcel van Lier Objektaufbereitung
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Dies ist der Quellcode für die Unternehmenswebsite **Marcel van Lier Objektaufbereitung** – Spezialreinigung & Bauendreinigung im Ruhrgebiet und am Niederrhein.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Live-Website: [https://lier-objektaufbereitung.de](https://lier-objektaufbereitung.de)
 
-## 🚀 Project Structure
+## 🚀 Tech Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Framework:** [Astro](https://astro.build/) (Static Site Generation für maximale Performance)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Typografie:** Fontsource (Montserrat & Open Sans)
+- **Formulare:** [Web3Forms](https://web3forms.com/)
+- **Hosting:** Vercel
+
+## 📂 Projektstruktur
+
+Alle zentralen Inhalte und Konfigurationen werden aus der `siteConfig.ts` im Ordner `src/data/` gesteuert.
 
 ```text
 /
-├── public/
+├── public/                 # Statische Assets (Favicon, OG-Images, Robots.txt)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/             # Bilder und Grafiken
+│   ├── components/         # Wiederverwendbare Astro-Komponenten (Hero, FAQ, Footer)
+│   ├── data/               # Zentrale Daten (cities.js, siteConfig.ts)
+│   ├── layouts/            # Basis-HTML-Gerüst und globale SEO-Tags
+│   ├── pages/              # Routing (index, danke, impressum, datenschutz, dynamische Städte)
+│   └── styles/             # Globale CSS-Dateien und Tailwind-Konfiguration
+├── astro.config.mjs        # Astro-Konfiguration (Sitemap, Tailwind)
+├── package.json            # Abhängigkeiten und Skripte
+└── tsconfig.json           # TypeScript-Konfiguration
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

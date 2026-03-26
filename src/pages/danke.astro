@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/siteConfig.ts';
+
+const metaTitle = `Vielen Dank für Ihre Anfrage | ${siteConfig.company.name}`;
+const metaDesc = "Vielen Dank für Ihr Interesse. Sofern Sie uns eine Anfrage gesendet haben, melden wir uns in Kürze bei Ihnen.";
+---
+
+<Layout title={metaTitle} description={metaDesc} noindex={true}>
+  <section class="min-h-[80vh] bg-[#09090b] flex flex-col items-center justify-center px-6 py-24 text-center">
+    
+    <div class="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+      <svg class="w-10 h-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+
+    <h1 class="motion-scroll text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+      Vielen Dank.
+    </h1>
+    
+    <p class="motion-scroll delay-100 text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12">
+      Sofern Sie unser Formular abgesendet haben, ist Ihre Anfrage bei uns eingegangen. 
+      Wir sichten Ihre Unterlagen umgehend und melden uns <strong class="text-white font-medium">werktags innerhalb von {siteConfig.promises.responseTime}</strong> mit einer ersten Einschätzung bei Ihnen.
+    </p>
+
+    <a 
+      href="/" 
+      class="motion-scroll delay-200 inline-flex items-center justify-center px-8 py-4 bg-white text-zinc-950 hover:bg-zinc-200 font-bold rounded-md transition-all duration-300 text-sm tracking-wide uppercase"
+    >
+      Zurück zur Startseite
+    </a>
+    
+  </section>
+
+  <Footer hideContact={true} />
+</Layout>

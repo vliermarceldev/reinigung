@@ -1,0 +1,19 @@
+---
+import { siteConfig } from '../data/siteConfig.ts';
+---
+
+<div class="fixed bottom-6 right-6 z-50 sm:hidden">
+  <div class="relative flex items-center justify-center">
+    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-40"></span>
+    
+    <a 
+      href={siteConfig.getWhatsAppLink(siteConfig.cta.waDefaultText)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Direkt per WhatsApp anfragen"
+      class="relative flex items-center justify-center w-14 h-14 bg-emerald-500 text-zinc-950 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-transform duration-300 active:scale-95"
+    >
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.573-.187-.981-.342-2.303-.876-3.771-3.234-3.889-3.392-.118-.153-.929-1.236-.929-2.36 0-1.122.584-1.674.792-1.9.208-.223.454-.279.605-.279.15 0 .3.003.435.008.145.006.335-.056.525.405.198.481.676 1.646.736 1.766.06.118.1.258.026.405-.075.148-.113.239-.224.368-.112.128-.236.279-.335.385-.109.117-.223.245-.098.461.124.215.553.915 1.185 1.482.818.736 1.503.963 1.711 1.07.208.107.33.09.453-.052.123-.141.531-.62.673-.833.142-.212.284-.176.48-.104.195.071 1.236.582 1.446.687.21.106.35.158.4.246.05.088.05.513-.094.918z"/></svg>
+    </a>
+  </div>
+</div>

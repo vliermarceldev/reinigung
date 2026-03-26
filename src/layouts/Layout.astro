@@ -1,7 +1,13 @@
 ---
+import '@fontsource-variable/montserrat';
+import '@fontsource-variable/open-sans';
 import '../styles/global.css';
 
-interface Props {
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import { siteConfig } from '../data/siteConfig.ts';
+import { getBaseSchema } from '../utils/seo.ts';
+
+export interface Props {
   title?: string;
   description?: string;
   canonical?: string;
@@ -10,122 +16,23 @@ interface Props {
   noindex?: boolean;
 }
 
-const SITE_URL = 'https://lier-objektaufbereitung.de';
-const SITE_NAME = 'Marcel van Lier Objektaufbereitung';
-const DEFAULT_TITLE = 'Spezialreinigung & Bauendreinigung im Ruhrgebiet | Marcel van Lier Objektaufbereitung';
-const DEFAULT_DESCRIPTION = 'Spezialreinigung, Bauendreinigung und Grundreinigung für Immobilien und Gewerbeflächen im Ruhrgebiet. Strukturierte Ausführung, transparente Einschätzung und direkte Kommunikation.';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og/marcel-van-lier-objektaufbereitung.jpg`;
-const LOGO_URL = `${SITE_URL}/logo.png`;
-const BUSINESS_PHONE = '+49 176 20013611';
-const BUSINESS_PHONE_E164 = '+4917620013611';
-const BUSINESS_EMAIL = 'kontakt@lier-objektaufbereitung.de';
-
 const {
-  title = DEFAULT_TITLE,
-  description = DEFAULT_DESCRIPTION,
+  title = siteConfig.seo.defaultTitle,
+  description = siteConfig.seo.defaultDescription,
   canonical,
-  ogImage = DEFAULT_OG_IMAGE,
+  ogImage = `${siteConfig.seo.url}/og-white.svg`,
   robots,
   noindex = false,
 } = Astro.props;
 
 const pathname = Astro.url?.pathname ?? '/';
-const canonicalUrl = canonical ?? new URL(pathname, SITE_URL).toString();
+const canonicalUrl = canonical ?? new URL(pathname, siteConfig.seo.url).toString();
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : robots ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-const organizationSchema = {
-  '@type': 'Organization',
-  '@id': `${SITE_URL}/#organization`,
-  name: SITE_NAME,
-  url: SITE_URL,
-  logo: LOGO_URL,
-  image: ogImage,
-  email: BUSINESS_EMAIL,
-  telephone: BUSINESS_PHONE_E164,
-};
-
-const localBusinessSchema = {
-  '@type': 'CleaningService',
-  '@id': `${SITE_URL}/#localbusiness`,
-  name: SITE_NAME,
-  url: SITE_URL,
-  image: [ogImage],
-  logo: LOGO_URL,
-  description: DEFAULT_DESCRIPTION,
-  telephone: BUSINESS_PHONE_E164,
-  email: BUSINESS_EMAIL,
-  priceRange: '€€€',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Rees',
-    postalCode: '46459',
-    addressRegion: 'Nordrhein-Westfalen',
-    addressCountry: 'DE',
-  },
-  areaServed: [
-    { '@type': 'AdministrativeArea', name: 'Ruhrgebiet' },
-    { '@type': 'City', name: 'Essen' },
-    { '@type': 'City', name: 'Dortmund' },
-    { '@type': 'City', name: 'Bochum' },
-    { '@type': 'City', name: 'Duisburg' },
-    { '@type': 'City', name: 'Oberhausen' },
-  ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
-  ],
-  contactPoint: [
-    {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      telephone: BUSINESS_PHONE_E164,
-      email: BUSINESS_EMAIL,
-      areaServed: 'DE',
-      availableLanguage: ['de'],
-    },
-  ],
-  parentOrganization: {
-    '@id': `${SITE_URL}/#organization`,
-  },
-};
-
-const websiteSchema = {
-  '@type': 'WebSite',
-  '@id': `${SITE_URL}/#website`,
-  url: SITE_URL,
-  name: SITE_NAME,
-  inLanguage: 'de-DE',
-};
-
-const webpageSchema = {
-  '@type': 'WebPage',
-  '@id': `${canonicalUrl}#webpage`,
-  url: canonicalUrl,
-  name: title,
-  description,
-  isPartOf: {
-    '@id': `${SITE_URL}/#website`,
-  },
-  about: {
-    '@id': `${SITE_URL}/#localbusiness`,
-  },
-  primaryImageOfPage: {
-    '@type': 'ImageObject',
-    url: ogImage,
-  },
-  inLanguage: 'de-DE',
-};
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [organizationSchema, localBusinessSchema, websiteSchema, webpageSchema],
-};
+// Holt sich das saubere JSON-LD Objekt aus unserem neuen Helper
+const structuredData = getBaseSchema(title, description, canonicalUrl, ogImage);
 ---
 
 <html lang="de" class="scroll-smooth">
@@ -137,25 +44,16 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robotsContent} />
-    <meta name="author" content="Marcel van Lier" />
+    <meta name="author" content={siteConfig.company.owner} />
     <meta name="theme-color" content="#09090b" />
 
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="de-DE" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preload" as="image" href={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/faviconwhite.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
-    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:site_name" content={siteConfig.company.name} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -170,45 +68,7 @@ const structuredData = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Marcel van Lier Objektaufbereitung – Spezialreinigung und Bauendreinigung im Ruhrgebiet" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-
-    <style is:global>
-      .motion-hero,
-      .motion-scroll {
-        opacity: 0;
-        transform: translateY(3rem);
-        transition-property: opacity, transform;
-        transition-duration: 1000ms;
-        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: opacity, transform;
-      }
-
-      .motion-hero.is-visible,
-      .motion-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .delay-100 { transition-delay: 100ms; }
-      .delay-150 { transition-delay: 150ms; }
-      .delay-200 { transition-delay: 200ms; }
-      .delay-300 { transition-delay: 300ms; }
-      .delay-400 { transition-delay: 400ms; }
-      .delay-500 { transition-delay: 500ms; }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .motion-hero,
-        .motion-scroll {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
   </head>
 
   <body class="overflow-x-hidden bg-[#09090b] text-zinc-100 antialiased selection:bg-zinc-100 selection:text-[#09090b]">
@@ -223,6 +83,8 @@ const structuredData = {
       <slot />
     </main>
 
+    <StickyWhatsApp />
+
     <script is:inline>
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -230,7 +92,6 @@ const structuredData = {
         document.querySelectorAll('.motion-hero, .motion-scroll').forEach((el) => {
           el.classList.add('is-visible');
         });
-
         const img = document.getElementById('hero-img');
         if (img) img.classList.replace('scale-110', 'scale-100');
       };

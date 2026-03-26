@@ -1,10 +1,11 @@
-// @ts-check
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://www.lier-objektaufbereitung.de",
+  // Deine Live-URL ist wichtig für die Sitemap und canonical Links
+  site: "https://lier-objektaufbereitung.de",
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
