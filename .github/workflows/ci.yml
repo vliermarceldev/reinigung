@@ -27,9 +27,9 @@ jobs:
       - name: 📦 Install Dependencies
         run: npm ci
 
-      - name: 🎭 Install Playwright Browsers (Cross-Browser)
-        # Jetzt werden Chromium, Firefox und WebKit installiert
-        run: npx playwright install --with-deps chromium firefox webkit
+      - name: 🎭 Install Playwright Browsers
+        # Wichtig: install-deps stellt sicher, dass WebKit auf Linux läuft
+        run: npx playwright install --with-deps
 
       - name: 🧹 Lint Code (ESLint)
         run: npm run lint
@@ -41,7 +41,8 @@ jobs:
         run: npm run check
 
       - name: 🔗 Deep Link Check (Lychee)
-        uses: lycheeverse/lychee-action@v3
+        # FIX: Version auf @v2 korrigiert (aktuelle stabile Version)
+        uses: lycheeverse/lychee-action@v2
         with:
           args: --offline --include-fragments ./dist/**/*.html
           fail: true
