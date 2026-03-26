@@ -1,32 +1,45 @@
-# Marcel van Lier Objektaufbereitung
+# Lier Objektaufbereitung - Spezialreinigung
 
-Dies ist der Quellcode für die Unternehmenswebsite **Marcel van Lier Objektaufbereitung** – Spezialreinigung & Bauendreinigung im Ruhrgebiet und am Niederrhein.
+Ein hochperformantes, SEO-optimiertes und barrierefreies Multi-Page-Webprojekt, gebaut mit Astro, Tailwind CSS v4 und TypeScript. Entwickelt für maximale lokale Sichtbarkeit und höchste Conversion-Raten bei Härtefällen und Bauendreinigungen.
 
-Live-Website: [https://lier-objektaufbereitung.de](https://lier-objektaufbereitung.de)
+## 🚀 Kern-Features
 
-## 🚀 Tech Stack
+- **Statische Generierung (SSG):** Blitzschnelle Ladezeiten und perfekte Core Web Vitals dank Astro.
+- **Single Source of Truth:** Vollständige Steuerung aller Inhalte, FAQs und Meta-Daten über zentralisierte und validierte TypeScript-Dateien (`siteConfig.ts`, `cities.ts`).
+- **Skalierbare Lokal-SEO:** Dynamische Generierung von Landingpages pro Einsatzort inkl. automatisiertem Schema.org Local Business & FAQ-Markup.
+- **Performance First:** Aggressiv optimierte Variable-Fonts (Latin-Subset) und serverseitige Bildkomprimierung.
+- **Bulletproof Formular:** Gehärtetes Web3Forms-Setup mit hCaptcha, Honeypot und strikter clientseitiger MIME-Type-Validierung für Dateianhänge.
+- **Enterprise Quality Gate:** Cross-Browser E2E-Testing (Playwright), strikte Barrierefreiheits-Checks (Axe-core) und automatisierte CI-Pipelines.
 
-- **Framework:** [Astro](https://astro.build/) (Static Site Generation für maximale Performance)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Typografie:** Fontsource (Montserrat & Open Sans)
-- **Formulare:** [Web3Forms](https://web3forms.com/)
-- **Hosting:** Vercel
+## 🛠️ Tech Stack
 
-## 📂 Projektstruktur
+- **Framework:** [Astro](https://astro.build)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) (via Vite Plugin)
+- **Sprache & Validierung:** TypeScript & [Zod](https://zod.dev)
+- **E2E & a11y Testing:** [Playwright](https://playwright.dev) & [@axe-core/playwright](https://github.com/dequelabs/axe-core-npm/tree/master/packages/playwright)
+- **CI/CD:** GitHub Actions & [Lychee](https://lychee.cli.rs/) (Broken Link Checker)
 
-Alle zentralen Inhalte und Konfigurationen werden aus der `siteConfig.ts` im Ordner `src/data/` gesteuert.
+## 📁 Projektstruktur
+
+Das Projekt folgt einer klaren, modularen Architektur:
 
 ```text
 /
-├── public/                 # Statische Assets (Favicon, OG-Images, Robots.txt)
+├── .github/workflows/   # CI/CD Pipelines (Quality Gate)
 ├── src/
-│   ├── assets/             # Bilder und Grafiken
-│   ├── components/         # Wiederverwendbare Astro-Komponenten (Hero, FAQ, Footer)
-│   ├── data/               # Zentrale Daten (cities.js, siteConfig.ts)
-│   ├── layouts/            # Basis-HTML-Gerüst und globale SEO-Tags
-│   ├── pages/              # Routing (index, danke, impressum, datenschutz, dynamische Städte)
-│   └── styles/             # Globale CSS-Dateien und Tailwind-Konfiguration
-├── astro.config.mjs        # Astro-Konfiguration (Sitemap, Tailwind)
-├── package.json            # Abhängigkeiten und Skripte
-└── tsconfig.json           # TypeScript-Konfiguration
+│   ├── assets/          # Lokale Bilder & Grafiken
+│   ├── components/      # Wiederverwendbare UI-Elemente (Footer, Process, CTAs...)
+│   ├── data/
+│   │   ├── cities.ts    # 📍 Zentraler Datenstamm für alle Städte & FAQs (Zod-validiert)
+│   │   └── siteConfig.ts# ⚙️ Globale Einstellungen (SEO, URLs, Firmenname)
+│   ├── layouts/         # Basis-Layouts (Meta-Tags, JSON-LD Einbindung)
+│   ├── pages/           # Statische Routen (index, impressum, 404, etc.)
+│   │   └── spezialreinigung-[city].astro # Dynamischer SEO-Seitengenerator
+│   ├── styles/
+│   │   └── global.css   # Tailwind v4 Import & Font-Optimierung (unicode-range)
+│   └── utils/
+│       └── seo.ts       # Helper-Funktionen für Schema.org Generierung
+├── tests/
+│   └── e2e.spec.ts      # Playwright Test-Suite (Routing, Formulare, a11y, SEO)
+└── astro.config.mjs     # Minimale Astro & Vite Konfiguration
 ```

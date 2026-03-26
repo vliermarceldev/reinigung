@@ -1,12 +1,49 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ==========================================================================
+   FONT-OPTIMIERUNG (Variable Fonts)
+   Zwingt Vite dazu, beim Build ausschließlich lateinische Zeichen zu bündeln.
+   Hält den /dist/_astro/ Ordner extrem klein und sauber.
+   ========================================================================== */
+
+/* Montserrat Variable - Nur Latin & Latin-Ext */
+@font-face {
+  font-family: "Montserrat Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src:
+    url("@fontsource-variable/montserrat/files/montserrat-latin-ext-wght-normal.woff2")
+      format("woff2-variations"),
+    url("@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2")
+      format("woff2-variations");
+  unicode-range: U+0000-024F;
+}
+
+/* Open Sans Variable - Nur Latin & Latin-Ext */
+@font-face {
+  font-family: "Open Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 800;
+  src:
+    url("@fontsource-variable/open-sans/files/open-sans-latin-ext-wght-normal.woff2")
+      format("woff2-variations"),
+    url("@fontsource-variable/open-sans/files/open-sans-latin-wght-normal.woff2")
+      format("woff2-variations");
+  unicode-range: U+0000-024F;
+}
+
+/* ==========================================================================
+   TAILWIND THEME & DESIGN TOKENS
+   ========================================================================== */
+
 @theme {
   --font-sans:
-    "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    "Open Sans Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* --- Enterprise Basis-Setup --- */
@@ -61,6 +98,10 @@ select {
   letter-spacing: 0.25em;
 }
 
+/* ==========================================================================
+   UI ELEMENTE & KOMPONENTEN
+   ========================================================================== */
+
 /* --- Elegante Scrollbar --- */
 ::-webkit-scrollbar {
   width: 12px;
@@ -96,6 +137,10 @@ select {
   background-color: #18181b;
   color: #fafafa;
 }
+
+/* ==========================================================================
+   ANIMATIONEN
+   ========================================================================== */
 
 /* --- Marquee Animation --- */
 @keyframes marquee {
